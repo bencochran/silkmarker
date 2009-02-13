@@ -49,17 +49,29 @@ function SilkMarker(latlng, options) {
 	
 	/* To do here:
 	   - make the GIcon use the baseMarker provided
+	   - Figure out a way to set iconOffset based on the given marker
+	      ... how? dunno. Maybe it would be best to try and design the
+	          baseMarkers so they all require the same offset
 	   - allow changing the base url for the marker and icon
 	*/
 	
 	// Create the GIcon for the baseMarker	
-	icon = new GIcon();
-	icon.image = "http://labs.google.com/ridefinder/images/mm_20_red.png";
-	icon.shadow = "http://labs.google.com/ridefinder/images/mm_20_shadow.png";
+	var icon = new GIcon(G_DEFAULT_ICON);
+    icon.image = "http://gmaps-samples.googlecode.com/svn/trunk/markers/red/blank.png";
+	
+	/*
+	var icon = new GIcon();
+	icon.image = "http://bencochran.com/SilkMarker/silkmarker/markers/"+this.baseMarker+".png";
+	icon.shadow = "http://bencochran.com/SilkMarker/silkmarker/markers/"+this.baseMarker+"_shadow.png";
 	icon.iconSize = new GSize(12, 20);
 	icon.shadowSize = new GSize(22, 20);
 	icon.iconAnchor = new GPoint(6, 20);
 	icon.infoWindowAnchor = new GPoint(5, 1);
+	*/
+	
+	// Total guess and check for this marker. Need to keep track of optimal
+	// placement when designing base markers.
+	this.iconOffset = new GSize(-7, -32);
 	
 	options.icon = icon;
 		
@@ -79,7 +91,12 @@ SilkMarker.prototype.initialize = function(map) {
 	   - deal with transparency (ie6 ?)
 	   - make the event listener stuff happen
 	*/
+	var img = document.createElement("img");
+	img.src = "http://bencochran.com/SilkMarker/silkmarker/icons/"+this.overlayIcon+".png";
+	img.style.position = "absolute";
+	map.getPane(G_MAP_MARKER_PANE).appendChild(img);
 	
+	this.img = img;
 	this.map = map;
 }
 
@@ -89,6 +106,18 @@ SilkMarker.prototype.redraw = function(force) {
 
 	if (!force) return;
 
+	var p = this.map.fromLatLngToDivPixel(this.latlng);
+	var z = GOverlay.getZIndex(this.latlng.lat());
+	
+    //this.div.style.left = (p.x + this.labelOffset.width) + "px";
+    //this.div.style.top = (p.y + this.labelOffset.height) + "px";
+
+    this.img.style.left = (p.x + this.iconOffset.width) + "px";
+    this.img.style.top = (p.y + this.iconOffset.height) + "px";
+    this.img.style.zIndex = z + 1; // in front of the marker
+
+
+
 	/* To do here:
 	   - Move the silk icon into position
 	*/
@@ -96,8 +125,11 @@ SilkMarker.prototype.redraw = function(force) {
 
 SilkMarker.prototype.remove = function() {
 	/* To do here:
-	   - Move the silk icon into position
+	   - Remove the icon
 	*/
+	this.img.parentNode.removeChild(this.img);
+    this.img = null;
+    
 	// Remove GMarker
 	GMarker.prototype.remove.apply(this, arguments);
 }
