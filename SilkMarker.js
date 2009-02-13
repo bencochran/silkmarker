@@ -1,6 +1,6 @@
 /*
  * Project: SilkMarker
- * Version: 0.01
+ * Version: 0.02
  * Author: Ben Cochran
  * http://bcochran.github.com/silkmarker/
  * 
@@ -41,17 +41,30 @@
  */
 
 function SilkMarker(latlng, options) {
+	options = options ? options : {};
 	this.latlng = latlng;
 	this.overlayIcon = options.overlayIcon || 'star';
 	this.baseMarker = options.baseMarker || 'square';
 	this.clickable = options.clickable || true;
 	
 	/* To do here:
-	   - create GIcon for the marker underlay and pass it along to the GMarker
+	   - make the GIcon use the baseMarker provided
 	   - allow changing the base url for the marker and icon
 	*/
 	
-	GMarker.apply(this, arguments)
+	// Create the GIcon for the baseMarker	
+	icon = new GIcon();
+	icon.image = "http://labs.google.com/ridefinder/images/mm_20_red.png";
+	icon.shadow = "http://labs.google.com/ridefinder/images/mm_20_shadow.png";
+	icon.iconSize = new GSize(12, 20);
+	icon.shadowSize = new GSize(22, 20);
+	icon.iconAnchor = new GPoint(6, 20);
+	icon.infoWindowAnchor = new GPoint(5, 1);
+	
+	options.icon = icon;
+		
+	GMarker.call(this, latlng, options)
+	// or GMarker.apply(this, Array(latlng, options))
 }
 
 /* We have to supply a dummy latlng to be able to create the GMarker */
