@@ -1,6 +1,5 @@
 /*
  * Project: SilkMarker
- * Version: 0.05
  * Author: Ben Cochran
  * http://bcochran.github.com/silkmarker/
  * 
@@ -87,7 +86,6 @@ SilkMarker.prototype.initialize = function(map) {
 	GMarker.prototype.initialize.apply(this, arguments);
 	
 	/* To do here:
-	   - add the silk icon
 	   - deal with transparency (ie6 ?)
 	   - make the event listener stuff happen
 	*/
@@ -109,24 +107,12 @@ SilkMarker.prototype.redraw = function(force) {
 	var p = this.map.fromLatLngToDivPixel(this.latlng);
 	var z = GOverlay.getZIndex(this.latlng.lat());
 	
-    //this.div.style.left = (p.x + this.labelOffset.width) + "px";
-    //this.div.style.top = (p.y + this.labelOffset.height) + "px";
-
     this.img.style.left = (p.x + this.iconOffset.width) + "px";
     this.img.style.top = (p.y + this.iconOffset.height) + "px";
     this.img.style.zIndex = z + 1; // in front of the marker
-
-
-
-	/* To do here:
-	   - Move the silk icon into position
-	*/
 }
 
 SilkMarker.prototype.remove = function() {
-	/* To do here:
-	   - Remove the icon
-	*/
 	this.img.parentNode.removeChild(this.img);
     this.img = null;
     
