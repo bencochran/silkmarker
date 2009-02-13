@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: with_map
 title: Home
 ---
 
@@ -15,6 +15,16 @@ overlayIcon, which is the icon to place on the underlying marker.
 
 A [guide][marker_guide] from the [Beginning Google Maps Applications][bgma] blog
 was used when outlining the class.
+
+Example
+-------
+
+<div id="map" style="width: 300px; height: 200px;"></div>
+
+The code to add this marker:
+	var marker = new SilkMarker(new GLatLng(44.46201924941167, -93.15387010574341));
+	map.addOverlay(marker);
+
 
 License
 -------
