@@ -14,7 +14,7 @@
 		$document.ready(function() {
 			if (GBrowestIsCompatible() && document.getElementById('map'))
 			{
-				map = new GMap2(document.getElementById(divId));
+				map = new GMap2(document.getElementById('map'));
 				map.addControl(new GSmallMapControl());
 				
 				map.setCenter(new GLatLng(44.46201924941167, -93.15387010574341), 15);

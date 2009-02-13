@@ -19,7 +19,7 @@ was used when outlining the class.
 Example
 -------
 
-<div id="map" style="width: 300px; height: 200px;"></div>
+<div id="map" style="width: 300px; height: 200px;">Map to be replaced. Hopefully.</div>
 
 The code to add this marker:
 	var marker = new SilkMarker(new GLatLng(44.46201924941167, -93.15387010574341));
