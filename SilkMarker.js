@@ -1,6 +1,6 @@
 /*
  * Project: SilkMarker
- * Version: 0.02
+ * Version: 0.05
  * Author: Ben Cochran
  * http://bcochran.github.com/silkmarker/
  * 
