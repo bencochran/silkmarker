@@ -1,6 +1,7 @@
 /*
- * SilkMarker
- *
+ * Project: SilkMarker
+ * Version: 0.01
+ * Author: Ben Cochran
  * http://bcochran.github.com/silkmarker/
  * 
  * This class extends the Google Map API's GMarker and adds support of
