@@ -2,14 +2,19 @@ SilkMarker
 ==========
 
 [SilkMarker][silkmarker] extends the Google Map API's GMarker and adds support
-for dynamically-created markers based on the [Silk Icon set][silk] by Mark
-James.
+for dynamically-created markers containing custom icons. Although it is based on
+the [Silk Icon set][silk] by Mark James, you can use it out of the box with any
+16x16 icons and with any size with some customization and creation of custom
+base markers.
 
 You use it by specifying a baseMarker, which acts as an underlay, and an
 overlayIcon, which is the icon to place on the underlying marker.
 
-A [guide][marker_guide] from the [Beginning Google Maps Applications][bgma] blog
-was used when outlining the class.
+Example
+-------
+
+See an [example with multiple markers][example].
+
 
 License
 -------
@@ -38,6 +43,5 @@ THE SOFTWARE.
 
 [silkmarker]: http://bcochran.github.com/silkmarker/
 [carleton]: http://apps.carleton.edu/opensource/
+[example]: http://bencochran.com/SilkMarker/
 [silk]: http://www.famfamfam.com/lab/icons/silk/
-[marker_guide]: http://googlemapsbook.com/2007/03/06/clickable-labeledmarker/
-[bgma]: http://googlemapsbook.com
